@@ -14,20 +14,21 @@ const server = http.createServer((req,res)=>{
     }
     if(url==='/message' && method ==='POST'){
         const body = [];
-        req.on('data',(chunk)=>{
+        req.on('data',chunk=>{
             console.log(chunk);
             body.push(chunk);
         })
 
-        req.on('end',()=> {
+        return req.on('end',()=> {
             const parsedBody = Buffer.concat(body).toString();
             console.log(parsedBody);
             const message = parsedBody.split('=')[1];
-            fs.writeFileSync('message.txt',message);
+            fs.writeFile('message.txt',message,err=> {
+                res.statusCode = 302; 
+                res.setHeader('Location','/');
+                return res.end();
+            });
         })
-        res.statusCode = 302; 
-        res.setHeader('Location','/');
-        return res.end();
     }
 
     res.setHeader('Content-type','text/html');
