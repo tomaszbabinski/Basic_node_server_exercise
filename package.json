@@ -1,0 +1,20 @@
+{
+  "name": "basic_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomaszbabinski/Basic_node_server_exercise.git"
+  },
+  "author": "Tom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomaszbabinski/Basic_node_server_exercise/issues"
+  },
+  "homepage": "https://github.com/tomaszbabinski/Basic_node_server_exercise#readme"
+}
