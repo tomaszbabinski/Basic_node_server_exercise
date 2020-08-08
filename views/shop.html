@@ -5,14 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-header {
+            width: 100%;
+            height: 3.5rem;
+            background-color: #e2df25;
+        }
+
+        .main-header__nav {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .main-header__item-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .main-header__item {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-header__item a {
+            text-decoration: none;
+            color: white;
+
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Shop</a></li>
-                <li><a href="/admin/add-product">Add Product</a></li>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <ul class="main-header__item-list">
+                <li class="main-header__item"><a href="/">Shop</a></li>
+                <li class="main-header__item"><a href="/admin/add-product">Add Product</a></li>
             </ul>
         </nav>
     </header>
