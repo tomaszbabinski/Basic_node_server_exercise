@@ -5,13 +5,13 @@ const router = express.Router()
 const rootDir = require('../util/path');
 
 //this normally gets /admin/add-product -> GET
-router.get('/add-product',(req,res,next)=>{
-    res.sendFile(path.join(rootDir,'views','add-product.html'))
-    
+router.get('/add-product', (req, res, next) => {
+    res.sendFile(path.join(rootDir, 'views', 'add-product.html'))
+
 });
 
 //this normally gets /admin/add-product -> POST
-router.post('/add-product',(req,res,next)=> {
+router.post('/add-product', (req, res, next) => {
     console.log(req.body);
     res.redirect("/");
 })
