@@ -9,8 +9,8 @@
     {{#if formsCSS}}
     <link rel="stylesheet" href="/css/forms.css" />
     {{/if}}
-    {{#if productsCSS}}
-    <link rel="stylesheet" href="/css/products.css" />
+    {{#if productCSS}}
+    <link rel="stylesheet" href="/css/product.css" />
     {{/if}}
 </head>
 
@@ -18,14 +18,15 @@
     <header class="main-header">
         <nav class="main-header__nav">
             <ul class="main-header__item-list">
-                <li class="main-header__item"><a href="/">Shop</a></li>
                 <li class="main-header__item">
-                    <a href="/admin/add-product">Add Product</a>
+                    <a class="{{#if activeShop}}active{{/if}}" href="/">Shop</a></li>
+                <li class="main-header__item">
+                    <a class="{{#if activeAddProduct}}active{{/if}}" href="/admin/add-product">Add Product</a>
                 </li>
             </ul>
         </nav>
     </header>
-    <h1>Page not found</h1>
+    {{{ body }}}
 </body>
 
 </html>
