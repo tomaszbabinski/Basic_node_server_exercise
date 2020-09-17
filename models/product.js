@@ -2,11 +2,19 @@ const fs = require('fs');
 const path = require('path');
 const rootPath = require('../util/path')
 
+const getProductsFromFile = cb => {
+    const p = path.join(rootPath,'data','products.json');    
+    fs.readFile(p,(err,fileContent) => {
+        if(err){
+            return cb([]);
+        }
+        return cb(JSON.parse(fileContent));
+    });
+}
 module.exports = class Product{
     constructor(t){
         this.title = t;
     }
-
     save(){
         const p = path.join(rootPath,'data','products.json');
         fs.readFile(p,(err,fileContent) => {
@@ -20,14 +28,7 @@ module.exports = class Product{
             });
         })    
     }
-
     static fetchAll(cb){
-        const p = path.join(rootPath,'data','products.json');    
-        fs.readFile(p,(err,fileContent) => {
-            if(err){
-                return cb([]);
-            }
-            return cb(JSON.parse(fileContent));
-        });
+      getProductsFromFile(cb);
     }
 };
