@@ -6,9 +6,9 @@ const getProductsFromFile = cb => {
     const p = path.join(rootPath,'data','products.json');    
     fs.readFile(p,(err,fileContent) => {
         if(err){
-            return cb([]);
+            cb([]);
         }
-        return cb(JSON.parse(fileContent));
+        cb(JSON.parse(fileContent));
     });
 }
 module.exports = class Product{
