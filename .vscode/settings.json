@@ -1,5 +1,6 @@
 {
     "html.autoClosingTags": false,
     "javascript.autoClosingTags": false,
-    "typescript.autoClosingTags": false
+    "typescript.autoClosingTags": false,
+    "prettier.useTabs": true
 }
