@@ -1,6 +1,9 @@
 {
-    "html.autoClosingTags": false,
-    "javascript.autoClosingTags": false,
-    "typescript.autoClosingTags": false,
-    "prettier.useTabs": true
+	"html.autoClosingTags": false,
+	"javascript.autoClosingTags": false,
+	"typescript.autoClosingTags": false,
+	"prettier.useTabs": true,
+    "editor.codeActionsOnSave": {"source.fixAll": true},
+    "editor.defaultFormatter": "vscode.emmet",
+    "editor.formatOnSave": true
 }
