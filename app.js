@@ -13,14 +13,6 @@ const adminRoutes = require('./router/admin');
 const shopRoutes = require('./router/shop');
 const errorController = require('./controllers/error');
 
-db.execute('SELECT * FROM products')
-    .then((result)=> {
-        console.log(result);
-    })
-    .catch(err => {
-        console.log(err)
-    });
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname,'public')));
 
