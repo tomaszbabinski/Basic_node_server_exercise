@@ -21,7 +21,8 @@ module.exports = class Product{
     }
 
     static findById(id){
-    
+      return db.execute('SELECT * FROM products WHERE products.id = ?',
+      [id]);
     }
 
     static deleteById(id){
