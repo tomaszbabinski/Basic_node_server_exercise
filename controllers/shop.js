@@ -140,10 +140,16 @@ exports.postOrder = (req,res,next) => {
 };
 
 exports.getOrders = (req,res,next) => {
-    res.render('shop/orders',{
-        path: '/orders',
-        pageTitle: 'Your order'
-    });
+    req.user
+        .getOrders()
+        .then(orders => {
+            res.render('shop/orders',{
+                path: '/orders',
+                pageTitle: 'Your order',
+                orders: orders
+            });
+        })
+        .catch(err => console.log)
 }
 
 exports.getCheckout = (req,res,next) => {
