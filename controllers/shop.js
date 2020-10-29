@@ -141,7 +141,7 @@ exports.postOrder = (req,res,next) => {
 
 exports.getOrders = (req,res,next) => {
     req.user
-        .getOrders()
+        .getOrders({include: ['products']})
         .then(orders => {
             res.render('shop/orders',{
                 path: '/orders',
