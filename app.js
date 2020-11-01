@@ -9,7 +9,7 @@ app.set('views','views');
 
 const errorController = require('./controllers/error');
 
-// const adminRoutes = require('./router/admin');
+const adminRoutes = require('./router/admin');
 // const shopRoutes = require('./router/shop');
 
 
@@ -20,11 +20,10 @@ app.use((req,res,next) => {
  
 });
 
-// app.use('/admin',adminRoutes);
+app.use('/admin',adminRoutes);
 // app.use(shopRoutes);
 app.use(errorController.get404);
 
-mongoConnect(client => {
-    console.log(client);
+mongoConnect(() => {
     app.listen(3000);
 })
