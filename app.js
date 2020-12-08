@@ -15,7 +15,7 @@ app.set('views','views');
 
 const adminRoutes = require('./router/admin');
 const shopRoutes = require('./router/shop');
-
+const authRoutes = require('./router/auth');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname,'public')));
@@ -31,6 +31,7 @@ app.use((req,res,next) => {
 
 app.use('/admin',adminRoutes);
 app.use(shopRoutes);
+app.use(authRoutes);
 app.use(errorController.get404);
 
 mongoose
