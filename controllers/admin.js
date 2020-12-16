@@ -1,7 +1,9 @@
 const Product = require('../models/product');
 
 exports.getAddProduct = (req, res, next) => {
-    // res.sendFile(path.join(rootDir, 'views', 'add-product.html'))
+    if(!req.session.isLoggedIn){
+        return res.redirect('/login');
+    }
     res.render('admin/edit-product',{
         pageTitle: 'Add product', 
         path: '/admin/add-product',
