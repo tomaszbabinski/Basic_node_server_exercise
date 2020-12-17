@@ -77,7 +77,7 @@ exports.postCartDeleteProduct = (req,res,next) => {
 }
 
 exports.postOrder = (req,res,next) => {
-    req.session.user
+    req.user
         .populate('cart.items.productId')
         .execPopulate()
         .then(user => {
@@ -86,8 +86,8 @@ exports.postOrder = (req,res,next) => {
             });
             const order = new Order({
                 user: {
-                  name: req.session.user.name,
-                  userId: req.session.user
+                  email: req.user.email,
+                  userId: req.user
                 },
                 products: products
         
@@ -95,7 +95,7 @@ exports.postOrder = (req,res,next) => {
         return order.save(); 
         })
         .then( () => {
-            return req.session.user.clearCart();
+            return req.user.clearCart();
         })
         .then(result => {
             res.redirect('/orders');
