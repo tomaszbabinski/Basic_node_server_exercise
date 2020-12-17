@@ -5,16 +5,14 @@ exports.getLogin = (req,res,next) => {
     // const isLoggedIn = req.get('Cookie').split('=')[1];
         res.render('auth/login',{
             path: '/login',
-            pageTitle: 'Login',
-            isAuthenticated: false
+            pageTitle: 'Login'
         });
 };
 
 exports.getSignup = (req, res, next) => {
     res.render('auth/signup', {
       path: '/signup',
-      pageTitle: 'Signup',
-      isAuthenticated: false
+      pageTitle: 'Signup'
     });
   };
 
