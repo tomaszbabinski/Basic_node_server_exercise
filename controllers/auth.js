@@ -5,7 +5,8 @@ exports.getLogin = (req,res,next) => {
     // const isLoggedIn = req.get('Cookie').split('=')[1];
         res.render('auth/login',{
             path: '/login',
-            pageTitle: 'Login'
+            pageTitle: 'Login',
+            errorMessage: req.flash('error')
         });
 };
 
@@ -23,7 +24,15 @@ exports.postLogin = (req,res,next) => {
     User.findOne({email: email})
         .then(user => {
             if(!user){
-                return res.redirect('/login');
+                return Promise.resolve(req.flash('error', 'Invalid Email or Password'))
+                    .then(result => {
+                        return req.session.save(err => {
+                            res.redirect('/login')
+                        });
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    });
             }
             bcrypt
                 .compare(password,user.password)
