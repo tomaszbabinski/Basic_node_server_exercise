@@ -101,7 +101,7 @@ exports.postSignup = (req, res, next) => {
                     res.redirect('/login');
                     return transporter.sendMail({
                         to: email,
-                        from: 'shop@node-complete.com',
+                        from: 'nodeudemy@interia.pl',
                         subject: 'Signup succeeded!',
                         html: '<h1>You managed to signed up!</h1>'
                     })
@@ -122,3 +122,17 @@ exports.postLogout = (req,res,next) => {
       res.redirect('/');
   });
 };
+
+exports.getReset = (req,res,next) => {
+    let message = req.flash('error');
+    if(message.length > 0){
+        message = message[0];
+    } else{
+        message = null;       
+    }
+    res.render('auth/reset', {
+        path: '/reset',
+        pageTitle: 'Reset Password',
+        errorMessage: message
+      });
+}
