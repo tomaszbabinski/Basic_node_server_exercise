@@ -7,7 +7,8 @@ exports.getAddProduct = (req, res, next) => {
         path: '/admin/add-product',
         editing: false,
         hasError: false,
-        errorMessage: null
+        errorMessage: null,
+        validationErrors: []
     }); 
 }
 
@@ -18,7 +19,6 @@ exports.postAddProduct = (req, res, next) => {
     const description = req.body.description;
     const title = req.body.title;
     const errors = validationResult(req);
-    console.log(errors.array())
     if(!errors.isEmpty()){
         return res.status(422).render('admin/edit-product',{
             pageTitle: 'Add product', 
@@ -31,7 +31,8 @@ exports.postAddProduct = (req, res, next) => {
                 price: price,
                 description: description
             },
-            errorMessage: errors.array()[0].msg
+            errorMessage: errors.array()[0].msg,
+            validationErrors: errors.array()
         });
     }
     const product = new Product({
@@ -67,7 +68,8 @@ exports.getEditProduct = (req, res, next) => {
                 editing: editMode,
                 product: product,
                 hasError: false,
-                errorMessage: null
+                errorMessage: null,
+                validationErrors: []
             });
         })
         .catch(err => console.log(err))
@@ -80,6 +82,24 @@ exports.postEditProduct = (req,res,next) => {
     const updatedPrice = req.body.price;
     const updatedImageUrl = req.body.imageUrl;
     const updatedDescription = req.body.description;
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(422).render('admin/edit-product',{
+            pageTitle: 'Edit product', 
+            path: '/admin/edit-product',
+            editing: true,
+            hasError: true,
+            product: {
+                title: updatedTitle,
+                imageUrl: updatedImageUrl,
+                price: updatedPrice,
+                description: updatedDescription,
+                _id: prodId
+            },
+            errorMessage: errors.array()[0].msg,
+            validationErrors: errors.array()
+        });
+    }
 
     Product.findById(prodId).then(product => {
         if(product.userId.toString() !== req.user._id.toString()){
