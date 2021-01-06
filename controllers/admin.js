@@ -22,7 +22,7 @@ exports.postAddProduct = (req, res, next) => {
     if(!errors.isEmpty()){
         return res.status(422).render('admin/edit-product',{
             pageTitle: 'Add product', 
-            path: '/admin/edit-product',
+            path: '/admin/add-product',
             editing: false,
             hasError: true,
             product: {
@@ -46,7 +46,23 @@ exports.postAddProduct = (req, res, next) => {
         .then(result => {
         res.redirect('/admin/products')
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            // return res.status(500).render('admin/edit-product',{
+            //     pageTitle: 'Add product', 
+            //     path: '/admin/add-product',
+            //     editing: false,
+            //     hasError: true,
+            //     product: {
+            //         title: title,
+            //         imageUrl: imageUrl,
+            //         price: price,
+            //         description: description
+            //     },
+            //     errorMessage: 'Database validation failed, please try again',
+            //     validationErrors: []
+            // });
+            res.redirect('/500');
+        })
 }
 
 exports.getEditProduct = (req, res, next) => {
