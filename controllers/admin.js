@@ -61,7 +61,9 @@ exports.postAddProduct = (req, res, next) => {
             //     errorMessage: 'Database validation failed, please try again',
             //     validationErrors: []
             // });
-            res.redirect('/500');
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
         })
 }
 
@@ -88,7 +90,11 @@ exports.getEditProduct = (req, res, next) => {
                 validationErrors: []
             });
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
+        })
 }
 
 
