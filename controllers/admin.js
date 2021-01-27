@@ -27,7 +27,6 @@ exports.postAddProduct = (req, res, next) => {
             hasError: true,
             product: {
                 title: title,
-                image: image,
                 price: price,
                 description: description
             },
@@ -123,7 +122,7 @@ exports.postEditProduct = (req,res,next) => {
     const prodId = req.body.productId;
     const updatedTitle = req.body.title;
     const updatedPrice = req.body.price;
-    const updatedImageUrl = req.file
+    const image = req.file
     const updatedDescription = req.body.description;
     const errors = validationResult(req);
     if(!errors.isEmpty()){
