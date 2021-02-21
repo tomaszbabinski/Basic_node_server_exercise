@@ -10,7 +10,7 @@ const deleteProduct = (btn) => {
         }
     })
         .then(result => {
-            return result.json();
+            return result.json()
         })
         .then(data => {
             console.log(data);
